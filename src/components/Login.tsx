@@ -3,6 +3,7 @@ import TextInputElement from "./Utility/TextInputElement";
 import { useDispatch, useSelector } from "react-redux";
 import { tryLogin, setNetworkRequest } from "../store/actions";
 import { Store } from "../store/types";
+import axios from "../base_http_config";
 
 type LoginFormError = {
   email: boolean;
@@ -52,10 +53,13 @@ function Login() {
 
       setTimeout(() => {
         dispatch(
-          tryLogin({
-            email,
-            password,
-          })
+          tryLogin(
+            {
+              email,
+              password,
+            },
+            axios
+          )
         );
       }, 500);
     }

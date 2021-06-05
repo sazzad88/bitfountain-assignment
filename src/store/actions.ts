@@ -1,6 +1,8 @@
 import { ThunkAction } from "redux-thunk";
 import { Action } from "redux";
-import axios from "axios";
+
+import { AxiosInstance } from "axios";
+import appData from "../app_config.json";
 
 import { User, LoginInfo, Store } from "./types";
 
@@ -32,27 +34,29 @@ export const setNetworkRequest = (value: Boolean): ActionTypes => ({
 });
 
 export const tryLogin =
-  (data: LoginInfo): ThunkAction<void, Store, unknown, Action<string>> =>
+  (
+    data: LoginInfo,
+    axios: AxiosInstance
+  ): ThunkAction<void, Store, unknown, Action<string>> =>
   async (dispatch) => {
     dispatch(setNetworkRequest(false));
 
     try {
-      let resp = await axios.post(
-        "http://163.47.115.230:30000/api/login",
-        data
-      );
+      let resp = await axios.post("login", data);
       //const todos: Todo[] = await resp.json();
       // console.log(resp.data);
-      dispatch(
-        setUser({
-          id: resp.data.user.id,
-          email: resp.data.user.email,
-          access_token: resp.data.access_token,
-          expires_in: 50,
-        })
-      );
+
+      const user: User = {
+        id: resp.data.user.id,
+        email: resp.data.user.email,
+        access_token: resp.data.access_token,
+        expires_in: 50,
+      };
+
+      localStorage.setItem(appData.app.data_storage_key, JSON.stringify(user));
+
+      dispatch(setUser(user));
     } catch (e) {
-      console.log(e);
       dispatch(setLoginError(true));
       setTimeout(() => {
         dispatch(setLoginError(false));

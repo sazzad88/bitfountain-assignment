@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
+import appData from "../app_config.json";
 
 import {
   ActionTypes,
@@ -10,8 +11,6 @@ import {
 import { User, Store } from "./types";
 
 // Standard interface and functions
-
-const localStorage_key = "bf_appData";
 
 let baseStore: Store = {
     user: {
@@ -26,8 +25,10 @@ let baseStore: Store = {
   savedUser: User;
 
 try {
-  savedUser = JSON.parse(localStorage.getItem(localStorage_key) as string);
-  baseStore.user = savedUser;
+  savedUser = JSON.parse(
+    localStorage.getItem(appData.app.data_storage_key) as string
+  );
+  if (savedUser) baseStore.user = savedUser;
 } catch (e) {}
 
 // Redux implementation
@@ -53,10 +54,10 @@ function appReducer(state: Store = baseStore, action: ActionTypes) {
   }
 }
 
-const store = createStore(appReducer, applyMiddleware(thunk));
+//const store = createStore(appReducer, applyMiddleware(thunk));
 
-store.subscribe(() => {
-  localStorage.setItem(localStorage_key, JSON.stringify(store.getState().user));
-});
+// store.subscribe(() => {
+//   localStorage.setItem(localStorage_key, JSON.stringify(store.getState().user));
+// });
 
-export default store;
+export default createStore(appReducer, applyMiddleware(thunk));

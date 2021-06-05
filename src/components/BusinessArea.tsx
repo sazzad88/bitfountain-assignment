@@ -2,21 +2,14 @@ import React from "react";
 import WelcomeScreen from "./WelcomeScreen";
 import { useSelector } from "react-redux";
 import { Store } from "../store/types";
+import DeviceContainer from "./DeviceContainer";
 
 function BusinessArea() {
   const user = useSelector((state: Store) => state.user);
   const makingNetworkRequest = useSelector(
     (state: Store) => state.makingNetworkRequest
   );
-  return (
-    <>
-      {user.email === "" ? (
-        <WelcomeScreen />
-      ) : (
-        <p style={{ marginTop: "100px" }}>logged in</p>
-      )}
-    </>
-  );
+  return <>{user.email === "" ? <WelcomeScreen /> : <DeviceContainer />}</>;
 }
 
 export default BusinessArea;

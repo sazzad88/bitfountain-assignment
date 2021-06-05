@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import "axios-progress-bar/dist/nprogress.css";
 import { Provider } from "react-redux";
 import Logo from "./components/Logo";
 import BusinessArea from "./components/BusinessArea";
