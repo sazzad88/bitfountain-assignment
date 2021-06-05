@@ -6,9 +6,7 @@ import DeviceContainer from "./DeviceContainer";
 
 function BusinessArea() {
   const user = useSelector((state: Store) => state.user);
-  const makingNetworkRequest = useSelector(
-    (state: Store) => state.makingNetworkRequest
-  );
+
   return <>{user.email === "" ? <WelcomeScreen /> : <DeviceContainer />}</>;
 }
 

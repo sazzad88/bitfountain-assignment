@@ -4,19 +4,20 @@ import { Action } from "redux";
 import { AxiosInstance } from "axios";
 import appData from "../app_config.json";
 
-import { User, LoginInfo, Store } from "./types";
+import { User, LoginInfo, Store, DeviceType, DeviceMap } from "./types";
 
 export const SET_USER = "SET_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
-
 export const SET_LOGIN_ERROR = "SET_LOGIN_ERROR";
 export const SET_NETWORK_REQUEST = "SET_NETWORK_REQUEST";
+export const SET_DEVICE_TYPE_MAP = "SET_DEVICE_TYPE_MAP";
 
 export type ActionTypes =
   | { type: typeof SET_USER; payload: User }
   | { type: typeof LOGOUT_USER }
   | { type: typeof SET_NETWORK_REQUEST; payload: Boolean }
-  | { type: typeof SET_LOGIN_ERROR; payload: Boolean };
+  | { type: typeof SET_LOGIN_ERROR; payload: Boolean }
+  | { type: typeof SET_DEVICE_TYPE_MAP; payload: object };
 
 export const setUser = (user: User): ActionTypes => ({
   type: SET_USER,
@@ -33,6 +34,11 @@ export const setNetworkRequest = (value: Boolean): ActionTypes => ({
   payload: value,
 });
 
+export const setDeviceType = (data: DeviceMap): ActionTypes => ({
+  type: SET_DEVICE_TYPE_MAP,
+  payload: data,
+});
+
 export const tryLogin =
   (
     data: LoginInfo,
@@ -43,8 +49,6 @@ export const tryLogin =
 
     try {
       let resp = await axios.post("login", data);
-      //const todos: Todo[] = await resp.json();
-      // console.log(resp.data);
 
       const user: User = {
         id: resp.data.user.id,
@@ -62,6 +66,23 @@ export const tryLogin =
         dispatch(setLoginError(false));
       }, 3000);
     }
+  };
 
-    //dispatch(setTodos(todos));
+export const fetchDeviceTypes =
+  (axios: AxiosInstance): ThunkAction<void, Store, unknown, Action<string>> =>
+  async (dispatch) => {
+    dispatch(setNetworkRequest(false));
+
+    try {
+      let resp = await axios.get("devicetype");
+
+      let deviceTypes: Array<DeviceType> = resp.data,
+        givendeviceMap: DeviceMap = {};
+
+      deviceTypes.forEach((item: DeviceType) => {
+        givendeviceMap[item.Id] = item.Description;
+      });
+
+      dispatch(setDeviceType(givendeviceMap));
+    } catch (e) {}
   };

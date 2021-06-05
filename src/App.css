@@ -104,3 +104,15 @@
   padding: 5px;
   font-weight: bold;
 }
+
+.devices-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.device-item {
+  width: 30%;
+  border: 1px solid red;
+  padding: 10px;
+  margin: 10px;
+}

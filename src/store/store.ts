@@ -7,6 +7,7 @@ import {
   SET_USER,
   SET_LOGIN_ERROR,
   SET_NETWORK_REQUEST,
+  SET_DEVICE_TYPE_MAP,
 } from "./actions";
 import { User, Store } from "./types";
 
@@ -21,6 +22,7 @@ let baseStore: Store = {
     },
     loginError: false,
     makingNetworkRequest: false,
+    typesMap: {},
   },
   savedUser: User;
 
@@ -48,6 +50,11 @@ function appReducer(state: Store = baseStore, action: ActionTypes) {
       return {
         ...state,
         makingNetworkRequest: action.payload,
+      };
+    case SET_DEVICE_TYPE_MAP:
+      return {
+        ...state,
+        typesMap: action.payload,
       };
     default:
       return state;
