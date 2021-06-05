@@ -38,6 +38,7 @@
 .welcomeScreen {
   margin-top: 70px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -72,4 +73,8 @@
   border: 1px solid #e91e63;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.btn-full {
+  width: 100%;
 }
