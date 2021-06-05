@@ -1,25 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header className="app-header">
+        <div className="logo-container full-width">
+          <div className="logo">
+            <img
+              src="https://bitfountain.co/wp-content/uploads/2019/04/cropped-bitfountain.png"
+              alt="Site logo"
+            />
+          </div>
+          <div className="menu-items">{/* <a href="#">Login</a> */}</div>
+        </div>
       </header>
-    </div>
+      <div></div>
+    </>
   );
 }
 
