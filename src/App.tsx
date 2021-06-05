@@ -1,22 +1,22 @@
 import React from "react";
 import "./App.css";
+import { Provider } from "react-redux";
+import Logo from "./components/Logo";
+import BusinessArea from "./components/BusinessArea";
+
+import store from "./store/store";
 
 function App() {
   return (
-    <>
+    <Provider store={store}>
       <header className="app-header">
         <div className="logo-container full-width">
-          <div className="logo">
-            <img
-              src="https://bitfountain.co/wp-content/uploads/2019/04/cropped-bitfountain.png"
-              alt="Site logo"
-            />
-          </div>
+          <Logo />
           <div className="menu-items">{/* <a href="#">Login</a> */}</div>
         </div>
       </header>
-      <div></div>
-    </>
+      <BusinessArea />
+    </Provider>
   );
 }
 

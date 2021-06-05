@@ -34,3 +34,42 @@
   padding: 5px;
   margin: 5px 15px;
 }
+
+.welcomeScreen {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.companyName {
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.companyName .name {
+  color: #e91e63;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.companyName hr {
+  width: 100%;
+  border-top: 1px dotted red;
+}
+
+.enter-app {
+  margin-top: 50px;
+}
+
+.btn {
+  padding: 12px;
+  background-color: #e91e63;
+  color: #fff;
+  border: 1px solid #e91e63;
+  border-radius: 4px;
+  cursor: pointer;
+}
