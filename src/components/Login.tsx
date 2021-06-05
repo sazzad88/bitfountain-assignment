@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import TextInputElement from "./Utility/TextInputElement";
+import { useDispatch, useSelector } from "react-redux";
+import { tryLogin, setNetworkRequest } from "../store/actions";
+import { Store } from "../store/types";
 
 type LoginFormError = {
   email: boolean;
@@ -7,6 +10,11 @@ type LoginFormError = {
 };
 
 function Login() {
+  const dispatch = useDispatch();
+  const loginError = useSelector((state: Store) => state.loginError);
+  const makingNetworkRequest = useSelector(
+    (state: Store) => state.makingNetworkRequest
+  );
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [formError, setFormError] = useState<LoginFormError>({
@@ -40,7 +48,16 @@ function Login() {
     }
 
     if (allOk) {
-      console.log("try login");
+      dispatch(setNetworkRequest(true));
+
+      setTimeout(() => {
+        dispatch(
+          tryLogin({
+            email,
+            password,
+          })
+        );
+      }, 500);
     }
   };
 
@@ -73,8 +90,10 @@ function Login() {
         />
 
         <button type="submit" className="btn btn-full">
-          Login
+          Login {makingNetworkRequest ? "making.." : ""}
         </button>
+
+        {loginError ? <p>login error happen</p> : null}
       </form>
     </div>
   );
