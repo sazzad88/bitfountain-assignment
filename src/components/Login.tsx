@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TextInputElement from "./Utility/TextInputElement";
+import Modal from "./Utility/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { tryLogin, setNetworkRequest } from "../store/actions";
 import { Store } from "../store/types";
@@ -10,7 +11,7 @@ type LoginFormError = {
   password: boolean;
 };
 
-function Login() {
+function Login({ closeModal }: { closeModal: (value: Boolean) => void }) {
   const dispatch = useDispatch();
   const loginError = useSelector((state: Store) => state.loginError);
   const makingNetworkRequest = useSelector(
@@ -66,12 +67,13 @@ function Login() {
   };
 
   return (
-    <div>
+    <Modal height={"250px"} title={"Login"} closeModal={closeModal}>
       <form onSubmit={handleLogin}>
         <TextInputElement
           className={formError.email ? "error" : ""}
           type="text"
           value={email}
+          placeholder="Email"
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setEmail(event.target.value);
             setFormError({
@@ -84,6 +86,7 @@ function Login() {
           className={formError.password ? "error" : ""}
           type="password"
           value={password}
+          placeholder="Password"
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setPassword(event.target.value);
             setFormError({
@@ -94,12 +97,12 @@ function Login() {
         />
 
         <button type="submit" className="btn btn-full">
-          Login {makingNetworkRequest ? "making.." : ""}
+          {makingNetworkRequest ? "Trying to login.." : "Login"}
         </button>
 
-        {loginError ? <p>login error happen</p> : null}
+        {loginError ? <p className={"authError"}>Wrong credentials. </p> : null}
       </form>
-    </div>
+    </Modal>
   );
 }
 

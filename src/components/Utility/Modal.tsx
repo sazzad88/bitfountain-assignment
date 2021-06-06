@@ -4,11 +4,13 @@ import "./Modal.css";
 type ModalProps = {
   title: string;
   closeModal: (data: Boolean) => void;
+  height?: string;
 };
 
 const Modal: FunctionComponent<ModalProps> = ({
   title,
   closeModal,
+  height,
   children,
 }) => {
   const modal = useRef<HTMLDivElement>(null);
@@ -29,7 +31,10 @@ const Modal: FunctionComponent<ModalProps> = ({
             className="close"
             onClick={(e) => {
               e.preventDefault();
-              closeModal(false);
+              modal.current?.classList.remove("modal-open");
+              setTimeout(() => {
+                closeModal(false);
+              }, 100);
             }}
           >
             <a href="#">
@@ -37,7 +42,9 @@ const Modal: FunctionComponent<ModalProps> = ({
             </a>
           </span>
         </div>
-        <div className="modal__content">{children}</div>
+        <div className="modal__content" style={{ height: height ?? "600px" }}>
+          {children}
+        </div>
       </div>
     </>
   );

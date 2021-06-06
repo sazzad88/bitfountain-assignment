@@ -119,7 +119,11 @@
   cursor: pointer;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
-  box-shadow: 1px 1px 1px rgba(243, 60, 132, 0.6);
+  box-shadow: 1px 1px 1px rgba(243, 60, 132, 0.4);
+}
+
+.device-item:hover {
+  box-shadow: 1px 1px 1px rgba(243, 60, 132, 1);
 }
 
 .device-item p {
@@ -140,7 +144,11 @@
   cursor: pointer;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
-  box-shadow: 1px 1px 1px rgba(243, 60, 132, 0.6);
+  box-shadow: 1px 1px 1px rgba(243, 60, 132, 0.4);
+}
+
+.overview-item:hover {
+  box-shadow: 1px 1px 1px rgba(243, 60, 132, 1);
 }
 
 .overview-item p {
@@ -158,4 +166,9 @@
 .progress-indicator {
   max-height: 3px;
   background-color: #e91e63;
+}
+
+.authError {
+  margin-top: 20px;
+  color: #e91e63;
 }

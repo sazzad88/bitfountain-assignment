@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Login from "./Login";
 
 function WelcomeScreen() {
-  const [showLogin, setShowLogin] = useState(false);
+  const [showLogin, setShowLogin] = useState<Boolean>(false);
+
   return (
     <div className="welcomeScreen">
       <div className="companyName full-width">
@@ -13,7 +14,7 @@ function WelcomeScreen() {
           </button>
         </div>
       </div>
-      {showLogin ? <Login /> : null}
+      {showLogin ? <Login closeModal={setShowLogin} /> : null}
     </div>
   );
 }
