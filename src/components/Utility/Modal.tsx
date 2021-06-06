@@ -16,7 +16,13 @@ const Modal: FunctionComponent<ModalProps> = ({
     <div className="modal">
       <div className="modal__title">
         {title}
-        <span className="close" onClick={() => closeModal(false)}>
+        <span
+          className="close"
+          onClick={(e) => {
+            e.preventDefault();
+            closeModal(false);
+          }}
+        >
           <a href="#">
             <i className="far fa-window-close"></i>
           </a>

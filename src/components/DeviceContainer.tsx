@@ -12,7 +12,7 @@ function DeviceContainer() {
   const typesMap: DeviceTypeMap = useSelector((state: Store) => state.typesMap);
   const [models, setModels] = useState<ModelType[] | []>([]);
   const [overview, setOverview] = useState<OverviewType[] | []>([]);
-  const [showModal, setShowModal] = useState<Boolean>(false);
+  const [showOverviewModal, setShowModal] = useState<Boolean>(false);
   const [selectedModel, setSelectedModel] = useState<ModelType>({
     Id: 1,
     BrandId: "",
@@ -50,19 +50,14 @@ function DeviceContainer() {
   }, []);
 
   useEffect(() => {
+    console.log("fetch me");
     fetchDevices();
   }, []);
 
   return (
     <div className="main-container">
       <div className="section-title full-width">Available Models</div>
-      {showModal ? (
-        <Overview
-          model={selectedModel}
-          overview={overview}
-          closeModal={setShowModal}
-        />
-      ) : null}
+
       <div className="devices-container full-width">
         {models.map((model: ModelType) => (
           <Device
@@ -73,6 +68,14 @@ function DeviceContainer() {
           />
         ))}
       </div>
+
+      {showOverviewModal ? (
+        <Overview
+          model={selectedModel}
+          overview={overview}
+          closeModal={setShowModal}
+        />
+      ) : null}
     </div>
   );
 }

@@ -32,7 +32,7 @@ export interface OverviewType {
   Name: string;
   DisplayName: string;
   Description: string;
-  Status: string;
+  Status: string | null;
   GroupId: number;
   ProtocolOrder: number;
 }
