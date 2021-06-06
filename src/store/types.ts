@@ -16,15 +16,28 @@ export interface DeviceType {
 }
 
 export interface ModelType {
-  Id: string;
+  Id: number;
   BrandId: string;
   Name: string;
-  TypeId: null;
+  TypeId: number;
   Comment: string | null;
   Description: string | null;
 }
 
-export interface DeviceMap {
+export interface OverviewType {
+  Id: number;
+  DataType: string;
+  Brand: string;
+  Model: string;
+  Name: string;
+  DisplayName: string;
+  Description: string;
+  Status: string;
+  GroupId: number;
+  ProtocolOrder: number;
+}
+
+export interface DeviceTypeMap {
   [id: number]: string;
 }
 
@@ -32,5 +45,5 @@ export interface Store {
   user: User;
   loginError: Boolean;
   makingNetworkRequest: Boolean;
-  typesMap: object;
+  typesMap: DeviceTypeMap;
 }

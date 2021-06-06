@@ -1,8 +1,32 @@
-import React, { useState, useEffect } from "react";
-import { ModelType } from "../store/types";
+import React from "react";
 
-function Device({ model }: { model: ModelType }) {
-  return <div className="device-item">{model.Name}</div>;
+import { ModelType, DeviceTypeMap } from "../store/types";
+
+function Device({
+  model,
+  typesMap,
+  fetchModelOverview,
+}: {
+  model: ModelType;
+  typesMap: DeviceTypeMap;
+  fetchModelOverview: (device: ModelType) => void;
+}) {
+  // const typesMap: DeviceTypeMap = useSelector((state: Store) => state.typesMap);
+
+  return (
+    <div className="device-item" onClick={() => fetchModelOverview(model)}>
+      <p>
+        <strong>Name</strong> {model.Name}
+      </p>
+      <p>
+        <strong>Brand</strong> {model.BrandId ?? <small>Not Available</small>}
+      </p>
+      <p>
+        <strong>Type</strong>{" "}
+        {typesMap[model.TypeId] ?? <small>Not Available</small>}
+      </p>
+    </div>
+  );
 }
 
 export default Device;
