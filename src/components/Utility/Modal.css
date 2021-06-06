@@ -36,7 +36,7 @@
   margin: 0 0 1rem 0;
   padding: 4px;
   overflow: auto;
-  max-height: 650px;
+  height: 600px;
 }
 
 .modal__actions {

@@ -11,8 +11,6 @@ function Device({
   typesMap: DeviceTypeMap;
   fetchModelOverview: (device: ModelType) => void;
 }) {
-  // const typesMap: DeviceTypeMap = useSelector((state: Store) => state.typesMap);
-
   return (
     <div className="device-item" onClick={() => fetchModelOverview(model)}>
       <p>

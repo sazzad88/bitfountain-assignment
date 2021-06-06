@@ -3,13 +3,15 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Device from "./Device";
 import Overview from "./Overview";
-import { fetchDeviceTypes } from "../store/actions";
+import ProgressIndicator from "./Utility/ProgressIndicator";
+import { fetchDeviceTypes, setNetworkRequest } from "../store/actions";
 import { ModelType, DeviceTypeMap, Store, OverviewType } from "../store/types";
 import { AxiosResponse } from "axios";
 
 function DeviceContainer() {
   const dispatch = useDispatch();
   const typesMap: DeviceTypeMap = useSelector((state: Store) => state.typesMap);
+  const [fetchingDevices, setfetchingDevices] = useState<Boolean>(false);
   const [models, setModels] = useState<ModelType[] | []>([]);
   const [overview, setOverview] = useState<OverviewType[] | []>([]);
   const [showOverviewModal, setShowModal] = useState<Boolean>(false);
@@ -23,13 +25,14 @@ function DeviceContainer() {
   });
 
   const fetchModelOverview = (device: ModelType) => {
+    dispatch(setNetworkRequest(true));
     setShowModal(true);
     setSelectedModel(device);
     axios
       .get(`overview/modeldata/${device.BrandId}/${device.Name}`)
       .then((response: AxiosResponse) => {
         console.log(response.data);
-
+        dispatch(setNetworkRequest(false));
         let data: Array<OverviewType> = response.data;
         setOverview(data);
       });
@@ -41,16 +44,14 @@ function DeviceContainer() {
   const fetchDevices = () => {
     axios.get("overview/modeltype").then((response: AxiosResponse) => {
       let data: Array<ModelType> = response.data;
+      setfetchingDevices(false);
       setModels(data);
     });
   };
 
   useEffect(() => {
+    setfetchingDevices(true);
     fetchTypes();
-  }, []);
-
-  useEffect(() => {
-    console.log("fetch me");
     fetchDevices();
   }, []);
 
@@ -67,6 +68,11 @@ function DeviceContainer() {
             key={`${model.Id}`}
           />
         ))}
+        {fetchingDevices ? (
+          <div style={{ minHeight: "500px", width: "100%" }}>
+            <ProgressIndicator message={"Fetching Devices....."} />
+          </div>
+        ) : null}
       </div>
 
       {showOverviewModal ? (

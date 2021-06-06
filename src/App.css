@@ -146,3 +146,16 @@
 .overview-item p {
   margin: 5px 0px;
 }
+
+.notification-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+}
+
+.progress-indicator {
+  max-height: 3px;
+  background-color: #e91e63;
+}
