@@ -7,7 +7,7 @@ type ModalProps = {
 const Empty: FunctionComponent<ModalProps> = ({ message, children }) => {
   return (
     <div className="notification-container">
-      <p style={{ textAlign: "center" }}>
+      <p style={{ textAlign: "center", marginBottom: "15px" }}>
         <i style={{ fontSize: "30px" }} className="fas fa-box-open"></i>
       </p>
       <p style={{ textAlign: "center" }}>{message}</p>

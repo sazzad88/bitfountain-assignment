@@ -31,7 +31,7 @@ function DeviceContainer() {
     axios
       .get(`overview/modeldata/${device.BrandId}/${device.Name}`)
       .then((response: AxiosResponse) => {
-        console.log(response.data);
+        //console.log(response.data);
         dispatch(setNetworkRequest(false));
         let data: Array<OverviewType> = response.data;
         setOverview(data);
