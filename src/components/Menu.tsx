@@ -11,13 +11,20 @@ function Menu() {
 
   const iconClickHandler = (e: MouseEvent) => {
     e.stopPropagation();
-    userMenu.current!.classList.add("menu-open");
+    userMenu.current!.style.display = "inline-block";
+    setTimeout(() => {
+      userMenu.current!.classList.add("menu-open");
+    }, 100);
   };
 
   const menuHideHandler = (e: MouseEvent) => {
     let currentElement = e.target! as HTMLElement;
     if (currentElement.closest(".app-menu") === null) {
       userMenu.current!.classList.remove("menu-open");
+
+      setTimeout(() => {
+        userMenu.current!.style.display = "none";
+      }, 800);
     }
   };
 

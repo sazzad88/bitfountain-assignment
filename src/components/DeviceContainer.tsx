@@ -80,7 +80,14 @@ function DeviceContainer() {
           </div>
         </div>
         <div className="add-button-container">
-          <button className="btn">Add Device Model</button>
+          <button
+            className="btn"
+            onClick={() => {
+              console.log("open");
+            }}
+          >
+            Add Device Model
+          </button>
         </div>
       </div>
 
