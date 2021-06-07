@@ -1,6 +1,11 @@
 import React, { useRef, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Store, User } from "../store/types";
+import { tryLogout } from "../store/actions";
 
 function Menu() {
+  const dispatch = useDispatch();
+  const user: User = useSelector((state: Store) => state.user);
   const userIcon = useRef<HTMLDivElement>(null);
   const userMenu = useRef<HTMLDivElement>(null);
 
@@ -25,6 +30,7 @@ function Menu() {
       document
         .querySelector("html")!
         .removeEventListener("click", menuHideHandler);
+
       if (userIcon.current!)
         userIcon.current!.removeEventListener("click", iconClickHandler);
     };
@@ -36,16 +42,20 @@ function Menu() {
         <i className="fas fa-user-tie"></i>
       </div>
       <div className="app-menu" ref={userMenu}>
-        <a href="#">
-          <div className="account-item">
-            <div className="user-icon">
-              <i className="fas fa-user-tie"></i>
-            </div>
-            <div className="email">sazzadurrahman88@gmail.com</div>
+        <div className="account-item">
+          <div className="user-icon">
+            <i className="fas fa-user-tie"></i>
           </div>
-        </a>
+          <div className="email">{user.email}</div>
+        </div>
+
         <ul className="menu-list">
-          <li className="menu-list-item">
+          <li
+            className="menu-list-item"
+            onClick={() => {
+              dispatch(tryLogout());
+            }}
+          >
             <i className="fas fa-sign-out-alt"></i>
             Sign out
           </li>

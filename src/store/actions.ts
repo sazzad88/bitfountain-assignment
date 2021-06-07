@@ -39,6 +39,19 @@ export const setDeviceType = (data: DeviceTypeMap): ActionTypes => ({
   payload: data,
 });
 
+export const tryLogout =
+  (): ThunkAction<void, Store, unknown, Action<string>> => (dispatch) => {
+    localStorage.removeItem(appData.app.data_storage_key);
+
+    const user: User = {
+      id: 1,
+      email: "",
+      access_token: "",
+      expires_in: 50,
+    };
+    dispatch(setUser(user));
+  };
+
 export const tryLogin =
   (
     data: LoginInfo,
