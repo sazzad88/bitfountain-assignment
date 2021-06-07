@@ -66,6 +66,7 @@ function Login({ closeModal }: { closeModal: (value: Boolean) => void }) {
     }
   };
 
+  console.log({ makingNetworkRequest });
   return (
     <Modal height={"250px"} title={"Login"} closeModal={closeModal}>
       <form onSubmit={handleLogin}>
@@ -98,7 +99,11 @@ function Login({ closeModal }: { closeModal: (value: Boolean) => void }) {
           }}
         />
 
-        <button type="submit" className="btn btn-full">
+        <button
+          disabled={makingNetworkRequest === true}
+          type="submit"
+          className="btn btn-full"
+        >
           {makingNetworkRequest ? "Trying to login.." : "Login"}
         </button>
 

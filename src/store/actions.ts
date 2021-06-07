@@ -66,6 +66,7 @@ export const tryLogin =
     try {
       let resp = await axios.post("login", data);
 
+      dispatch(setNetworkRequest(false));
       const user: User = {
         id: resp.data.user.id,
         email: resp.data.user.email,
@@ -82,10 +83,10 @@ export const tryLogin =
       localStorage.setItem(appData.app.data_storage_lock, uid);
 
       dispatch(setUser(user));
-      dispatch(setNetworkRequest(false));
 
       message("Welcome to Bitfoundtain");
     } catch (e) {
+      dispatch(setNetworkRequest(false));
       dispatch(setLoginError(true));
       setTimeout(() => {
         dispatch(setLoginError(false));

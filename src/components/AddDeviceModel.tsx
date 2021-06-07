@@ -7,6 +7,7 @@ import { setNetworkRequest } from "../store/actions";
 import { Store, DeviceTypeMap, ModelType } from "../store/types";
 import axios from "../base_http_config";
 import { AxiosResponse } from "axios";
+import { message } from "../utility";
 
 type FormError = {
   BrandId: boolean;
@@ -91,6 +92,7 @@ function Login({
             dispatch(setNetworkRequest(false));
             const newData: ModelType = response.data as ModelType;
             attachModel(newData);
+            message("New device model added");
             closeModal(false);
           })
           .catch((e) => {
@@ -162,11 +164,13 @@ function Login({
           }}
         />
 
-        <button type="submit" className="btn btn-full">
-          {makingNetworkRequest ? "Trying to login.." : "Save"}
+        <button
+          disabled={makingNetworkRequest === true}
+          type="submit"
+          className="btn btn-full"
+        >
+          {makingNetworkRequest ? "Saving.." : "Save"}
         </button>
-
-        {loginError ? <p className={"authError"}>Wrong credentials. </p> : null}
       </form>
     </Modal>
   );

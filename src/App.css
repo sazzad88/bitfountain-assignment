@@ -216,7 +216,8 @@
   width: 250px;
   border-radius: 3px;
   border: 1px solid lightblue;
-  background-color: azure;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
   z-index: 9999;
 }
 
@@ -248,7 +249,7 @@
 }
 
 .menu-list-item:hover {
-  background-color: lightgray;
+  background-color: #f9f9f9;
 }
 
 .account-item {
@@ -300,6 +301,9 @@
   margin-right: 6px;
 }
 
+button:disabled {
+  background: #f996ac;
+}
 /* @media screen and (min-width: 1201) {
   .full-width {
     width: 1200;
