@@ -1,11 +1,18 @@
 import React from "react";
 import "./App.css";
 import "axios-progress-bar/dist/nprogress.css";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import Logo from "./components/Logo";
+import Menu from "./components/Menu";
 import BusinessArea from "./components/BusinessArea";
+import { Store } from "./store/types";
 
 import store from "./store/store";
+
+const MenuContainer = () => {
+  const user = useSelector((state: Store) => state.user);
+  return <>{user.email !== "" ? <Menu /> : null}</>;
+};
 
 function App() {
   return (
@@ -13,7 +20,7 @@ function App() {
       <header className="app-header">
         <div className="logo-container full-width">
           <Logo />
-          <div className="menu-items">{/* <a href="#">Login</a> */}</div>
+          <MenuContainer />
         </div>
       </header>
       <BusinessArea />

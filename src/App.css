@@ -42,6 +42,10 @@
   margin: 15px;
 }
 
+.menu-items {
+  position: relative;
+}
+
 .menu-items a {
   text-decoration: none;
   padding: 5px;
@@ -171,4 +175,66 @@
 .authError {
   margin-top: 20px;
   color: #e91e63;
+}
+
+.profile {
+  cursor: pointer;
+}
+
+.app-menu {
+  position: absolute;
+  top: 45px;
+  width: 250px;
+  border-radius: 3px;
+  border: 1px solid lightblue;
+  background-color: azure;
+  z-index: 9999;
+}
+
+.fa-user-tie {
+  font-size: 30px;
+}
+
+.app-menu {
+  opacity: 0;
+  transform: translateY(-3rem);
+  transition: opacity 100ms, transform 100ms;
+  right: 25px;
+}
+.menu-list {
+  list-style-type: none;
+}
+
+.menu-open {
+  display: block !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.menu-list-item {
+  padding: 8px;
+  border-bottom: 1px solid #eef1f6;
+  cursor: pointer;
+}
+
+.menu-list-item:hover {
+  background-color: lightgray;
+}
+
+.account-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+}
+
+.account-item .username {
+  color: #3f3f44;
+  font-size: 14px;
+}
+
+.account-item .email {
+  color: lightgray;
+  font-size: 13px;
 }
