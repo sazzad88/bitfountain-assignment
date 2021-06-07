@@ -251,3 +251,34 @@
   color: lightgray;
   font-size: 13px;
 }
+
+.message-notice {
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  width: 100%;
+  height: 80px;
+}
+
+.message-notice .message {
+  padding: 10px;
+  opacity: 0;
+  transform: translateY(-1rem);
+  transition: opacity 800ms, transform 700ms;
+  background: #e91e63;
+  color: #fff;
+  border-radius: 4px;
+  min-width: 50px;
+}
+
+.message-open .message {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.message i {
+  margin-right: 6px;
+}

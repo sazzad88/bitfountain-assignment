@@ -9,6 +9,7 @@ import TextInputElement from "./Utility/TextInputElement";
 import { fetchDeviceTypes, setNetworkRequest } from "../store/actions";
 import { ModelType, DeviceTypeMap, Store, OverviewType } from "../store/types";
 import { AxiosResponse } from "axios";
+import { message } from "../utility";
 
 function DeviceContainer() {
   const dispatch = useDispatch();
@@ -66,6 +67,8 @@ function DeviceContainer() {
     currentModels.push(model);
 
     setModels(currentModels);
+
+    message("New Model Added");
   };
 
   useEffect(() => {

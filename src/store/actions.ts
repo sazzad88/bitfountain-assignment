@@ -3,6 +3,7 @@ import { Action } from "redux";
 
 import { AxiosInstance, AxiosResponse } from "axios";
 import appData from "../app_config.json";
+import { message } from "../utility";
 
 import { User, LoginInfo, Store, DeviceType, DeviceTypeMap } from "./types";
 
@@ -73,6 +74,8 @@ export const tryLogin =
       localStorage.setItem(appData.app.data_storage_key, JSON.stringify(user));
 
       dispatch(setUser(user));
+
+      message("Welcome to Bitfoundtain");
     } catch (e) {
       dispatch(setLoginError(true));
       setTimeout(() => {
