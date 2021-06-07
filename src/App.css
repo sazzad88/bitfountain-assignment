@@ -299,3 +299,43 @@
 .message i {
   margin-right: 6px;
 }
+
+/* @media screen and (min-width: 1201) {
+  .full-width {
+    width: 1200;
+  }
+} */
+
+@media screen and (max-width: 500px) {
+  .full-width {
+    width: 100%;
+  }
+  .section-title {
+    flex-direction: column;
+  }
+
+  .section-title .title,
+  .add-button-container {
+    flex-direction: column;
+  }
+
+  .filter-container .input {
+    width: 100%;
+  }
+
+  .device-item,
+  .overview-item {
+    width: 100%;
+  }
+
+  .overview-item {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .modal {
+    padding: 15px !important;
+    left: 5% !important;
+    width: 90% !important;
+  }
+}
