@@ -1,6 +1,7 @@
 {
   "app": {
     "base_url": "http://163.47.115.230:30000/api/",
-    "data_storage_key": "bf_appData"
+    "data_storage_key": "bf_appData",
+    "data_storage_lock": "bf_applock"
   }
 }

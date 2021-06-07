@@ -1,3 +1,5 @@
+import appData from "./app_config.json";
+
 export const message = (message: string, seconds?: number): void => {
   var temp = document.createElement("div");
   temp.classList.add("message-notice");
@@ -14,4 +16,9 @@ export const message = (message: string, seconds?: number): void => {
     temp.classList.remove("message-open");
     temp.remove();
   }, seconds ?? 3 * 1000);
+};
+
+export const cleanThisUser = () => {
+  localStorage.removeItem(appData.app.data_storage_key);
+  localStorage.removeItem(appData.app.data_storage_lock);
 };

@@ -3,9 +3,13 @@ import { Action } from "redux";
 
 import { AxiosInstance, AxiosResponse } from "axios";
 import appData from "../app_config.json";
-import { message } from "../utility";
+import { message, cleanThisUser } from "../utility";
 
 import { User, LoginInfo, Store, DeviceType, DeviceTypeMap } from "./types";
+
+import { v4 as uuidv4 } from "uuid";
+
+const Cryptr = require("cryptr");
 
 export const SET_USER = "SET_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
@@ -42,7 +46,7 @@ export const setDeviceType = (data: DeviceTypeMap): ActionTypes => ({
 
 export const tryLogout =
   (): ThunkAction<void, Store, unknown, Action<string>> => (dispatch) => {
-    localStorage.removeItem(appData.app.data_storage_key);
+    cleanThisUser();
 
     const user: User = {
       id: 1,
@@ -69,7 +73,13 @@ export const tryLogin =
         expires_in: 50,
       };
 
-      localStorage.setItem(appData.app.data_storage_key, JSON.stringify(user));
+      let uid = uuidv4();
+      let cryptr = new Cryptr(uid);
+
+      const encryptedData = cryptr.encrypt(JSON.stringify(user));
+
+      localStorage.setItem(appData.app.data_storage_key, encryptedData);
+      localStorage.setItem(appData.app.data_storage_lock, uid);
 
       dispatch(setUser(user));
       dispatch(setNetworkRequest(false));

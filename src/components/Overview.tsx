@@ -23,7 +23,6 @@ function Device({
       closeModal={closeModal}
       title={`Overview of ${model.BrandId} ${model.Name}`}
     >
-      {overview.length} data
       {!makingNetworkRequest && overview.length === 0 ? (
         <Empty message={`No data found`} />
       ) : null}

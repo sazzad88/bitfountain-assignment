@@ -56,7 +56,7 @@ function Login({ closeModal }: { closeModal: (value: Boolean) => void }) {
         dispatch(
           tryLogin(
             {
-              email,
+              email: email.trim(),
               password,
             },
             axios
