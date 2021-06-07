@@ -16,6 +16,7 @@ function DeviceContainer() {
   const typesMap: DeviceTypeMap = useSelector((state: Store) => state.typesMap);
   const [fetchingDevices, setfetchingDevices] = useState<Boolean>(false);
   const [keyFilter, setFilterkey] = useState<string>("");
+  const [typeFilter, setTypeFilterkey] = useState<string>("");
   const [models, setModels] = useState<ModelType[] | []>([]);
   const [overview, setOverview] = useState<OverviewType[] | []>([]);
   const [showOverviewModal, setOverviewModal] = useState<Boolean>(false);
@@ -83,7 +84,22 @@ function DeviceContainer() {
         <div className="title">
           <div>Available Models</div>
           <div className="filter-container">
+            <select
+              className="input"
+              value={typeFilter}
+              onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
+                setTypeFilterkey(event.target.value);
+              }}
+            >
+              <option value="">All Device type</option>
+              {Object.keys(typesMap).map((item: string) => (
+                <option key={item} value={item}>
+                  {typesMap[Number(item)]}
+                </option>
+              ))}
+            </select>
             <TextInputElement
+              className="rounded"
               value={keyFilter}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 setFilterkey(event.target.value);
@@ -107,17 +123,21 @@ function DeviceContainer() {
       <div className="devices-container full-width">
         {models
           .filter((model: ModelType) => {
+            let passInKey = true,
+              passInType = true;
             if (keyFilter.trim().length > 0) {
-              return (
+              passInKey =
                 model.BrandId?.toLowerCase().indexOf(
                   keyFilter.toLowerCase().trim()
                 ) !== -1 ||
                 model.Name?.toLowerCase().indexOf(
                   keyFilter.toLowerCase().trim()
-                ) !== -1
-              );
+                ) !== -1;
             }
-            return true;
+
+            if (typeFilter !== "")
+              passInType = Number(model.TypeId) === Number(typeFilter);
+            return passInKey && passInType;
           })
           .map((model: ModelType) => (
             <Device

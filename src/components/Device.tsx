@@ -13,16 +13,9 @@ function Device({
 }) {
   return (
     <div className="device-item" onClick={() => fetchModelOverview(model)}>
-      <p>
-        <strong>Name</strong> {model.Name}
-      </p>
-      <p>
-        <strong>Brand</strong> {model.BrandId ?? <small>Not Available</small>}
-      </p>
-      <p>
-        <strong>Type</strong>{" "}
-        {typesMap[model.TypeId] ?? <small>Not Available</small>}
-      </p>
+      <p className="brand-name">{model.Name}</p>
+      <p>Brand : {model.BrandId ?? <small>Not Available</small>}</p>
+      <p>Type : {typesMap[model.TypeId] ?? <small>Not Available</small>}</p>
     </div>
   );
 }

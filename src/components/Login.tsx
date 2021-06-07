@@ -72,6 +72,7 @@ function Login({ closeModal }: { closeModal: (value: Boolean) => void }) {
         <TextInputElement
           className={formError.email ? "error" : ""}
           type="text"
+          label="Email"
           value={email}
           placeholder="Email"
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,6 +86,7 @@ function Login({ closeModal }: { closeModal: (value: Boolean) => void }) {
         <TextInputElement
           className={formError.password ? "error" : ""}
           type="password"
+          label="Password"
           value={password}
           placeholder="Password"
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {

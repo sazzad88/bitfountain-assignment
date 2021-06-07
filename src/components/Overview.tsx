@@ -33,17 +33,9 @@ function Device({
         <div className="overview-container">
           {overview.map((item: OverviewType) => (
             <div className="overview-item" key={item.Id}>
-              <p>
-                <strong>Name</strong> {item.DisplayName}
-              </p>
-              <p>
-                <strong>Description</strong>{" "}
-                {item.Description ?? <small>Not Available</small>}
-              </p>
-              <p>
-                <strong>Status</strong>{" "}
-                {item.Status ?? <small>Not Available</small>}
-              </p>
+              <p className="target">{item.DisplayName}</p>
+
+              <p>Status : {item.Status ?? <small>Not Available</small>}</p>
             </div>
           ))}
         </div>

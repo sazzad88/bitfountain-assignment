@@ -19,8 +19,9 @@
   left: 30%;
   width: 40%;
   background: #fff;
-  padding: 1rem;
+  padding: 40px;
   border: 1px solid #ccc;
+  border-radius: 8px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 

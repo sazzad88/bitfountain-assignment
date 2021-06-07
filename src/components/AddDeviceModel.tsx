@@ -101,11 +101,12 @@ function Login({
   };
 
   return (
-    <Modal height={"380px"} title={"Add Device Model"} closeModal={closeModal}>
+    <Modal height={"450px"} title={"Add Device Model"} closeModal={closeModal}>
       <form onSubmit={handleLogin}>
         <TextInputElement
           className={formError.BrandId ? "error" : ""}
           value={BrandId}
+          label="Brand ID"
           placeholder="BrandID"
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setBrandId(event.target.value);
@@ -119,6 +120,7 @@ function Login({
         <TextInputElement
           className={formError.Name ? "error" : ""}
           value={Name}
+          label="Name"
           placeholder="Name"
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setName(event.target.value);
@@ -130,6 +132,7 @@ function Login({
           }}
         />
 
+        <div className="input-label">Device Type</div>
         <select
           className={formError.TypeId ? "input error" : "input"}
           value={TypeId}
@@ -151,6 +154,7 @@ function Login({
         </select>
 
         <TextareaElement
+          label="Comment"
           value={Comment}
           placeholder="Comment"
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {

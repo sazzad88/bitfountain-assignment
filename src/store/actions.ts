@@ -59,8 +59,6 @@ export const tryLogin =
     axios: AxiosInstance
   ): ThunkAction<void, Store, unknown, Action<string>> =>
   async (dispatch) => {
-    dispatch(setNetworkRequest(false));
-
     try {
       let resp = await axios.post("login", data);
 
@@ -74,6 +72,7 @@ export const tryLogin =
       localStorage.setItem(appData.app.data_storage_key, JSON.stringify(user));
 
       dispatch(setUser(user));
+      dispatch(setNetworkRequest(false));
 
       message("Welcome to Bitfoundtain");
     } catch (e) {

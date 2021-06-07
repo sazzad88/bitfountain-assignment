@@ -4,7 +4,15 @@
   border-radius: 3px;
   padding: 7px;
   min-height: 30px;
-  margin: 15px 0px;
+  margin: 10px 0px;
+}
+
+.input-label {
+  margin-top: 5px;
+}
+
+.rounded {
+  border-radius: 13px;
 }
 
 .input.error {
