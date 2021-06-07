@@ -165,7 +165,7 @@
 }
 
 .overview-item {
-  width: 43%;
+  width: 40%;
   padding: 12px;
   margin: 20px;
   cursor: pointer;
@@ -304,11 +304,6 @@
 button:disabled {
   background: #f996ac;
 }
-/* @media screen and (min-width: 1201) {
-  .full-width {
-    width: 1200;
-  }
-} */
 
 @media screen and (max-width: 500px) {
   .full-width {
@@ -341,5 +336,42 @@ button:disabled {
     padding: 15px !important;
     left: 5% !important;
     width: 90% !important;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 768px) {
+  .full-width {
+    width: 100%;
+  }
+
+  .modal {
+    left: 5%;
+    width: 90%;
+  }
+
+  .device-item {
+    width: 90% !important;
+  }
+
+  .overview-item {
+    width: 90%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1255px) {
+  .full-width {
+    width: 90%;
+  }
+  .modal {
+    left: 5% !important;
+    width: 90% !important;
+  }
+
+  .device-item {
+    width: 40% !important;
+  }
+
+  .overview-item {
+    width: 40%;
   }
 }

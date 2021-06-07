@@ -37,9 +37,7 @@ const Modal: FunctionComponent<ModalProps> = ({
               }, 100);
             }}
           >
-            <a href="#">
-              <i className="far fa-window-close"></i>
-            </a>
+            <i className="far fa-window-close"></i>
           </span>
         </div>
         <div className="modal__content" style={{ height: height ?? "600px" }}>

@@ -39,6 +39,7 @@
 
 .modal__title .close {
   float: right;
+  cursor: pointer;
 }
 
 .modal__content {
