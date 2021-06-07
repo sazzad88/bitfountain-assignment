@@ -104,10 +104,22 @@
   align-items: center;
 }
 
+.section-title .title,
+.add-button-container {
+  display: flex;
+  align-items: center;
+}
+
 .section-title {
+  display: flex;
+  justify-content: space-between;
   margin: 10px 0px;
   padding: 5px;
   font-weight: bold;
+}
+
+.filter-container {
+  margin-left: 10px;
 }
 
 .devices-container {
@@ -183,7 +195,7 @@
 
 .app-menu {
   position: absolute;
-  top: 45px;
+  top: 40px;
   width: 250px;
   border-radius: 3px;
   border: 1px solid lightblue;
@@ -199,7 +211,7 @@
   opacity: 0;
   transform: translateY(-3rem);
   transition: opacity 100ms, transform 100ms;
-  right: 25px;
+  right: 20px;
 }
 .menu-list {
   list-style-type: none;
