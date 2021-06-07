@@ -8,7 +8,7 @@ Then
 ##### `npm start`
 
 
-##Implemented features
+## Implemented features
    * Login with client side validation 
    * After successful login user data is persisted via browser localstorage api so that user can still use the app when app page is refreshed.
    * user data and access token is hashed before saving into the localstorage
