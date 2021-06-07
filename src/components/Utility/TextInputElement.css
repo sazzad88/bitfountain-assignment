@@ -3,7 +3,7 @@
   border: 1px solid #a590aa;
   border-radius: 3px;
   padding: 7px;
-  height: 30px;
+  min-height: 30px;
   margin: 15px 0px;
 }
 

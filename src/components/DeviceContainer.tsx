@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Device from "./Device";
 import Overview from "./Overview";
+import AddDeviceModel from "./AddDeviceModel";
 import ProgressIndicator from "./Utility/ProgressIndicator";
 import TextInputElement from "./Utility/TextInputElement";
 import { fetchDeviceTypes, setNetworkRequest } from "../store/actions";
@@ -16,7 +17,8 @@ function DeviceContainer() {
   const [keyFilter, setFilterkey] = useState<string>("");
   const [models, setModels] = useState<ModelType[] | []>([]);
   const [overview, setOverview] = useState<OverviewType[] | []>([]);
-  const [showOverviewModal, setShowModal] = useState<Boolean>(false);
+  const [showOverviewModal, setOverviewModal] = useState<Boolean>(false);
+  const [showAddDeviceModal, setAddDeviceModal] = useState<Boolean>(false);
   const [selectedModel, setSelectedModel] = useState<ModelType>({
     Id: 1,
     BrandId: "",
@@ -28,7 +30,7 @@ function DeviceContainer() {
 
   const fetchModelOverview = (device: ModelType) => {
     dispatch(setNetworkRequest(true));
-    setShowModal(true);
+    setOverviewModal(true);
     setSelectedModel(device);
     axios
       .get(`overview/modeldata/${device.BrandId}/${device.Name}`)
@@ -58,6 +60,14 @@ function DeviceContainer() {
       });
   };
 
+  const attachModel = (model: ModelType) => {
+    const currentModels = [...models];
+
+    currentModels.push(model);
+
+    setModels(currentModels);
+  };
+
   useEffect(() => {
     setfetchingDevices(true);
     fetchTypes();
@@ -83,7 +93,7 @@ function DeviceContainer() {
           <button
             className="btn"
             onClick={() => {
-              console.log("open");
+              setAddDeviceModal(true);
             }}
           >
             Add Device Model
@@ -125,7 +135,14 @@ function DeviceContainer() {
         <Overview
           model={selectedModel}
           overview={overview}
-          closeModal={setShowModal}
+          closeModal={setOverviewModal}
+        />
+      ) : null}
+
+      {showAddDeviceModal ? (
+        <AddDeviceModel
+          attachModel={attachModel}
+          closeModal={setAddDeviceModal}
         />
       ) : null}
     </div>

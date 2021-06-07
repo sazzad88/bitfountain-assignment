@@ -24,7 +24,7 @@ function Menu() {
 
       setTimeout(() => {
         userMenu.current!.style.display = "none";
-      }, 800);
+      }, 500);
     }
   };
 
