@@ -74,13 +74,15 @@ export const tryLogin =
         expires_in: 50,
       };
 
-      let uid = uuidv4();
-      let cryptr = new Cryptr(uid);
+      setTimeout(() => {
+        let uid = uuidv4();
+        let cryptr = new Cryptr(uid);
 
-      const encryptedData = cryptr.encrypt(JSON.stringify(user));
+        const encryptedData = cryptr.encrypt(JSON.stringify(user));
 
-      localStorage.setItem(appData.app.data_storage_key, encryptedData);
-      localStorage.setItem(appData.app.data_storage_lock, uid);
+        localStorage.setItem(appData.app.data_storage_key, encryptedData);
+        localStorage.setItem(appData.app.data_storage_lock, uid);
+      });
 
       dispatch(setUser(user));
 
